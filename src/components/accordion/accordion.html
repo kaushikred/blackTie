@@ -1,0 +1,15 @@
+<!-- <ion-card>
+    
+      <ion-card-header (click)="toggleAccordion()">
+        <p float-left>{{name}}</p>
+        <p float-right>{{seats}} Seats</p>
+      </ion-card-header>
+    
+      <ion-card-content #cc>
+            <ng-content></ng-content>
+      </ion-card-content>
+</ion-card> -->
+
+<div #expandWrapper class='expand-wrapper' [class.collapsed]="!expanded" text-nowrap>
+    <ng-content text-nowrap></ng-content>
+</div>

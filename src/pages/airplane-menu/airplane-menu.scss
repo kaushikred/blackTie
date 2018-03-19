@@ -1,0 +1,12 @@
+page-airplane-menu {
+    .card-content{
+        background-color: map-get($colors, gray);
+    }
+    .card-header{
+        background-color: map-get($colors, primary);
+        color: #fff
+    }
+    
+
+}
+

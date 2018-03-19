@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>
+        Login
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>
+    <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off" style="margin-top:30%;">
+      <ion-row justify-content-center align-items-center >
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-label><ion-icon name="md-person"></ion-icon></ion-label>                
+              <ion-input placeholder="Email" name="username" id="loginField" type="email" required [(ngModel)]="model.username" #email></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label><ion-icon name="md-key"></ion-icon></ion-label>   
+              <ion-input placeholder="Password" name="password" id="passwordField" type="password" required [(ngModel)]="model.password"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>
+          <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!loginForm.form.valid">Login
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button ion-button class="submit-btn" full (click)="showPrompt()" type="button">Forgot/Reset Password
+          </button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-content>

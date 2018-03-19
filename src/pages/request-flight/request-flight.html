@@ -1,0 +1,179 @@
+<ion-header>
+  <ion-navbar color="primary">
+
+  <ion-title>REQUEST A FLIGHT</ion-title>
+
+  <ion-buttons end>
+      <button ion-button icon-only (click)="optionsPopover($event)">
+          <ion-icon name="ios-notifications-outline"></ion-icon>
+      </button>
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <div >
+        <ion-segment [(ngModel)]="trip">
+          <ion-segment-button value="oneWay">
+            ONE WAY
+          </ion-segment-button>
+          <ion-segment-button value="roundWay">
+            ROUND TRIP
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+      
+      <div [ngSwitch]="trip" padding-top>
+
+        <ion-list *ngSwitchCase="'oneWay'"  >
+                <p *ngIf="submitAttempt" style="color: #ea6153 !important">Please fill out all details accurately.</p>
+        <form class="list" [formGroup]="flightForm" >
+            <ion-item>
+                <ion-label color="primary" floating>From</ion-label>
+                <ion-input  (tap)="openModalf($event)" type="text" [(ngModel)]="model.flight_from" formControlName="from" ></ion-input>
+            </ion-item>
+           <div *ngIf="!flightForm.controls.from.valid  && (flightForm.controls.from.dirty || submitAttempt)">
+                    <p>Required</p>
+           </div>
+
+            <ion-item>
+                <ion-label color="primary" floating>Destination</ion-label>
+                <ion-input (tap)="openModalt($event)" type="text" [(ngModel)]="model.flight_to" formControlName="to" ></ion-input>
+            </ion-item>
+           <div *ngIf="!flightForm.controls.to.valid  && (flightForm.controls.to.dirty || submitAttempt)">
+                    <p>Required</p>
+            </div>
+
+            <ion-item>
+                <ion-label color="primary" floating>Date</ion-label>
+                <ion-datetime displayFormat="MMM DD, YYYY"  [min]="minDate" max="2018-12-31" [(ngModel)]="model.date"  formControlName="date"  >
+                </ion-datetime>
+            </ion-item>
+           <div *ngIf="!flightForm.controls.date.valid  && (flightForm.controls.date.dirty || submitAttempt)">
+                    <p>Required</p>
+            </div>
+
+            <ion-item>
+                <ion-label color="primary" floating>Time</ion-label>
+                <ion-datetime displayFormat="h:mm A" formControlName="time" pickerFormat="h mm A" [(ngModel)]="model.time"></ion-datetime>
+            </ion-item>
+           <div *ngIf="!flightForm.controls.time.valid  && (flightForm.controls.time.dirty || submitAttempt)">
+                    <p>Required</p>
+            </div>
+
+            <ion-item>
+                <ion-label color="primary" floating>Plane Type</ion-label>
+                <ion-select [(ngModel)]="model.plane_type" formControlName="type">
+                        <ion-option value='turboprop' >Turboprop</ion-option>
+                        <ion-option value='very_light_jet'>Very Light Jet</ion-option>
+                        <ion-option value='light_jet'>Light Jet</ion-option>
+                </ion-select>
+               
+            </ion-item>
+           <div *ngIf="!flightForm.controls.type.valid  && (flightForm.controls.type.dirty || submitAttempt)">
+                    <p>Required</p>
+            </div>
+
+            <ion-item>
+                <ion-label color="primary" floating>Passengers</ion-label>
+                <ion-input type="number" formControlName="passengers"[(ngModel)]="model.number_of_passengers"  ></ion-input>
+            </ion-item>
+           <div *ngIf="!flightForm.controls.passengers.valid  && (flightForm.controls.passengers.dirty || submitAttempt)">
+                    <p>Required</p>
+            </div>
+           
+            <br/>
+            <button ion-button class="submit-btn" float-right *ngIf="auth.isAuthenticated()" (click)="request()">Request Flight</button>
+            <button ion-button class="submit-btn" float-right *ngIf="!auth.isAuthenticated()" [navPush]='login'>Login to Book</button>                      
+            
+        </form>
+            
+        </ion-list>
+      
+        <ion-list *ngSwitchCase="'roundWay'">
+
+                <form class="list" [formGroup]="flightReturnForm" >
+                        <ion-item>
+                            <ion-label color="primary" floating>From</ion-label>
+                            <ion-input  (tap)="openModalrf($event)" type="text" [(ngModel)]="modelr.flight_from" formControlName="from" ></ion-input>
+                        </ion-item>
+                       <div *ngIf="!flightReturnForm.controls.from.valid  && (flightReturnForm.controls.from.dirty || submitAttempt)">
+                                <p>Required</p>
+                       </div>
+            
+                        <ion-item>
+                            <ion-label color="primary" floating>Destination</ion-label>
+                            <ion-input (tap)="openModalrt($event)" type="text" [(ngModel)]="modelr.flight_to" formControlName="to" ></ion-input>
+                        </ion-item>
+                       <div *ngIf="!flightReturnForm.controls.to.valid  && (flightReturnForm.controls.to.dirty || submitAttempt)">
+                                <p>Required</p>
+                        </div>
+            
+                        <ion-item>
+                            <ion-label color="primary" floating>Departure Date</ion-label>
+                            <ion-datetime displayFormat="MMM DD, YYYY"  [min]="minDate" max="2018-12-31" [(ngModel)]="modelr.date"  formControlName="date"  >
+                            </ion-datetime>
+                        </ion-item>
+                       <div *ngIf="!flightReturnForm.controls.date.valid  && (flightReturnForm.controls.date.dirty || submitAttempt)">
+                                <p>Required</p>
+                        </div>
+            
+                        <ion-item>
+                            <ion-label color="primary" floating>Departure Time</ion-label>
+                            <ion-datetime displayFormat="h:mm A" formControlName="time" pickerFormat="h mm A" [(ngModel)]="modelr.time"></ion-datetime>
+                        </ion-item>
+                       <div *ngIf="!flightReturnForm.controls.time.valid  && (flightReturnForm.controls.time.dirty || submitAttempt)">
+                                <p>Required</p>
+                        </div>
+            
+                        <ion-item>
+                            <ion-label color="primary" floating>Plane Type</ion-label>
+                            <ion-select [(ngModel)]="modelr.plane_type" formControlName="type">
+                                    <ion-option value='turboprop' >Turboprop</ion-option>
+                                    <ion-option value='very_light_jet'>Very Light Jet</ion-option>
+                                    <ion-option value='light_jet'>Light Jet</ion-option>
+                            </ion-select>
+                           
+                        </ion-item>
+                       <div *ngIf="!flightReturnForm.controls.type.valid  && (flightReturnForm.controls.type.dirty || submitAttempt)">
+                                <p>Required</p>
+                        </div>
+            
+                        <ion-item>
+                            <ion-label color="primary" floating>Passengers</ion-label>
+                            <ion-input type="number" formControlName="passengers"[(ngModel)]="modelr.number_of_passengers"  ></ion-input>
+                        </ion-item>
+                       <div *ngIf="!flightReturnForm.controls.passengers.valid  && (flightReturnForm.controls.passengers.dirty || submitAttempt)">
+                                <p>Required</p>
+                        </div>
+
+                        <ion-item>
+                                <ion-label color="primary" floating>Return Date</ion-label>
+                                <ion-datetime displayFormat="MMM DD, YYYY"  [min]="minDate" max="2018-12-31" [(ngModel)]="modelr.returndate"  formControlName="returndate"  >
+                                </ion-datetime>
+                        </ion-item>
+                        <div *ngIf="!flightReturnForm.controls.returndate.valid  && (flightReturnForm.controls.returndate.dirty || submitAttempt)">
+                                <p>Required</p>
+                        </div>
+            
+                        <ion-item>
+                            <ion-label color="primary" floating>Return Time</ion-label>
+                            <ion-datetime displayFormat="h:mm A" formControlName="returntime" pickerFormat="h mm A" [(ngModel)]="modelr.returntime"></ion-datetime>
+                        </ion-item>
+                        <div *ngIf="!flightReturnForm.controls.returntime.valid  && (flightReturnForm.controls.returntime.dirty || submitAttempt)">
+                                <p>Required</p>
+                        </div>
+                       
+                        <br/>
+                        <button ion-button class="submit-btn" float-right *ngIf="auth.isAuthenticated()" (click)="requestReturn()">Request Flights</button>
+                        <button ion-button class="submit-btn" float-right *ngIf="!auth.isAuthenticated()" [navPush]='login'>Login to Book</button>                      
+                        
+                    </form>
+            
+        </ion-list>
+
+        
+      </div>
+
+</ion-content>

@@ -1,0 +1,36 @@
+<ion-menu [content]="content">
+  <!-- <ion-header>
+    <ion-toolbar>
+        <ion-searchbar
+        [showCancelButton]="shouldShowCancel"
+        (ionInput)="onInput($event)"
+        (ionCancel)="onCancel($event)">
+      </ion-searchbar>
+    </ion-toolbar>
+  </ion-header> -->
+  <ion-content class="bg-style">
+    <br>
+      <ion-searchbar
+      [showCancelButton]="shouldShowCancel"
+      (ionInput)="onInput($event)"
+      (ionCancel)="onCancel($event)">
+    </ion-searchbar>
+    <ion-list no-lines>
+      <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)">
+          <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+          {{ p.title }}
+      </button> 
+      <button ion-item menuClose  (click)="openLoginPage()"  *ngIf="!auth.isAuthenticated()">
+          <ion-icon item-start name="md-log-in" ></ion-icon>
+          Login
+      </button> 
+      <button ion-item menuClose (click)="auth.logout()"   *ngIf="auth.isAuthenticated()">
+          <ion-icon item-start name="md-log-in" ></ion-icon>
+          Logout
+      </button> 
+    </ion-list>
+  </ion-content>
+</ion-menu>
+ 
+<!-- main navigation -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

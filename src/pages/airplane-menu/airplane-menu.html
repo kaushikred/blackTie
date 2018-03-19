@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar color="primary">
+     
+  
+    <ion-title>AIRPLANE MENU</ion-title>
+  
+    <ion-buttons end>
+        <button ion-button icon-only (click)="optionsPopover($event)">
+            <ion-icon name="ios-notifications-outline"></ion-icon>
+        </button>
+    </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+  <!-- <accordion *ngFor="let item of data" [name]="item.name" [seats]="item.seats" >
+      <img [src]="item.img" style="width: 100vw !important; ">
+  </accordion> -->
+
+
+  <ion-list *ngIf='data.length > 0'>
+      <div *ngFor="let item of data">
+            <ion-card   (click)="expandItem(item)" >
+                    <ion-card-header >
+                        <p float-left>{{item.airplane_name}}</p>
+                        <p float-right>{{item.number_of_seat}} Seats</p>
+                    </ion-card-header>
+          
+                    <accordion [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
+                        <img [src]="item.airplane_photo" style="width: 100vw !important; ">
+                                      
+                    </accordion>
+            </ion-card>
+      </div>
+
+    </ion-list>
+
+  <ion-card text-center>
+    <ion-card-content>
+      Type of aircraft will vary depending on location & availability
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

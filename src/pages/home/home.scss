@@ -1,3 +1,43 @@
 page-home {
+    ion-content{
+        background: url('../assets/imgs/clouds.jpg') no-repeat center center fixed;
+    }
+    .slider{
+	    height: 45%;
+	
+    }
+    .swiper-pagination-bullet-active{
+        background: color($colors, gray) !important;
+        opacity: 1;
+    }
+    .swiper-pagination-bullet-inactive{
+        background:red !important;
+    }
+    .gridback{
+        margin-top: 1px;
+        
+
+     //   background: url('../assets/imgs/map2.png') no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    
+    }
+    .options{
+        background-color: #1e3764;
+		height: 95%;
+		text-align:center;
+		padding-top:2%;
+		position: relative;
+        width: 48vw !important;
+        left: calc(-50vw + 96%);
+        margin-top: 4px;
+    }
+
+    .grid[no-padding] > .row > .col {
+      //  padding: 0;
+    //    border: 1.5px solid white;
+    }
 
 }

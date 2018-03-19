@@ -1,0 +1,126 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle start>
+      <ion-icon name="ios-menu-outline"></ion-icon>
+  </button>
+
+  <ion-title>MY BOOKINGS</ion-title>
+
+  <ion-buttons end>
+      <button ion-button icon-only (click)="optionsPopover($event)">
+          <ion-icon name="ios-notifications-outline"></ion-icon>
+      </button>
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <div>
+        <ion-segment [(ngModel)]="booking">
+            <ion-segment-button value="requested">
+            REQUESTED
+            </ion-segment-button>
+            <ion-segment-button value="upcoming">
+            UPCOMING
+            </ion-segment-button>
+            <ion-segment-button value="completed">
+            COMPLETED
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+    
+    <ion-card style="background-color:#1f3763" *ngIf="!auth.isAuthenticated()"> 
+            <ion-card-content text-center [navPush]='login'>
+               <p > Login to view account info </p> 
+            </ion-card-content>
+    </ion-card>
+    <div>
+        
+    </div>
+    <div [ngSwitch]="booking" *ngIf="auth.isAuthenticated()">
+    <ion-list *ngSwitchCase="'upcoming'">
+        <div  *ngIf="upcoming.length > 0">
+            <ion-card style="background-color: #424242;" *ngFor='let data of upcoming'>    
+                <ion-card-content text-center >
+                    <div style="width: 100%; text-align:left;">
+                    <p>From : &nbsp;&nbsp; {{data.flight_from}}</p>
+                    <P>To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data.flight_to}} </P>  
+                    <P>Type of plane: &nbsp;&nbsp; {{data.plane_type}}</P>
+                    <P>Flight Type: &nbsp;&nbsp; {{data.return_date_time? 'Two Way':'One Way'}}</P>                                                          
+                    <P>Date: &nbsp;&nbsp; {{data.date_time | amDateFormat:'MM/DD/YYYY'}}</P> 
+                    <P>TIME: &nbsp;&nbsp; {{data.date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</P>   
+                    <p *ngIf='data.return_date_time'>Return Date: {{data.return_date_time | amDateFormat:'MM/DD/YYYY'}}</p>              
+                    <p  *ngIf='data.return_date_time'>TIME: &nbsp;&nbsp; {{data.return_date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</p>                       
+                    <P>Number of passengers: &nbsp;&nbsp; {{data.number_of_passengers}}</P>                 
+                    
+                    </div>          
+                </ion-card-content>
+            </ion-card>
+        </div>
+        <div *ngIf="upcoming.length == 0" >
+            <ion-card style="background-color: #424242;">
+                <ion-card-content text-center>
+                    <p>No upcoming flights</p>
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </ion-list>
+    
+    <ion-list *ngSwitchCase="'requested'">
+        <div  *ngIf="requested.data.length > 0">
+            <ion-card style="background-color: #424242;" *ngFor='let data of requested.data'>
+                    
+                    <ion-card-content text-center >
+                        <div style="width: 100%; text-align:left;">
+                        <p>From : &nbsp;&nbsp; {{data.flight_from}}</p>
+                        <P>To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data.flight_to}} </P>  
+                        <P>Type of plane: &nbsp;&nbsp; {{data.plane_type}}</P>             
+                        <P>Flight Type: &nbsp;&nbsp; {{data.return_date_time? 'Two Way':'One Way'}}</P>                                      
+                        <P>Date: &nbsp;&nbsp; {{data.date_time | amDateFormat:'MM/DD/YYYY'}}</P> 
+                        <P>TIME: &nbsp;&nbsp; {{data.date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</P> 
+                        <p *ngIf='data.return_date_time'>Return Date: {{data.return_date_time | amDateFormat:'MM/DD/YYYY'}}</p>              
+                        <p  *ngIf='data.return_date_time'>TIME: &nbsp;&nbsp; {{data.return_date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</p>                 
+                        <P>Number of passengers: &nbsp;&nbsp; {{data.number_of_passengers}}</P>                 
+                        
+                        </div>          
+                    </ion-card-content>
+            </ion-card>
+        </div>
+        <div *ngIf="requested.data.length == 0">
+            <ion-card style="background-color: #424242;">
+                <ion-card-content text-center>
+                    <p>No requested flights</p>
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </ion-list>
+    <ion-list *ngSwitchCase="'completed'">
+            <div *ngIf="completed.data.length > 0">
+                <ion-card style="background-color: #424242;"  *ngFor='let data of completed.data'>
+                        <ion-card-content text-center >
+                            <div style="width: 100%; text-align:left;">
+                            <p>From : &nbsp;&nbsp; {{data.flight_from}}</p>
+                            <P>To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data.flight_to}} </P>  
+                            <P>Type of plane: &nbsp;&nbsp; {{data.plane_type}}</P>    
+                            <P>Flight Type: &nbsp;&nbsp; {{data.return_date_time? 'Two Way':'One Way'}}</P>                                                              
+                            <P>Date: &nbsp;&nbsp; {{data.date_time | amDateFormat:'MM/DD/YYYY'}}</P> 
+                            <P>TIME: &nbsp;&nbsp; {{data.date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</P> 
+                            <p *ngIf='data.return_date_time'>Return Date: {{data.return_date_time | amDateFormat:'MM/DD/YYYY'}}</p>              
+                            <p  *ngIf='data.return_date_time'>TIME: &nbsp;&nbsp; {{data.return_date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</p>                 
+                            <P>Number of passengers: &nbsp;&nbsp; {{data.number_of_passengers}}</P>                 
+                            </div>          
+                        </ion-card-content>
+                </ion-card>
+            </div>
+            <div *ngIf="completed.data.length == 0">
+                    <ion-card style="background-color: #424242;">
+                        <ion-card-content text-center>
+                            <p>No completed flights</p>
+                        </ion-card-content>
+                    </ion-card>
+            </div>
+    </ion-list>
+    </div>
+
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle start>
+        <ion-icon name="ios-menu-outline"></ion-icon>
+    </button>
+  
+    <ion-title>MY ACCOUNT</ion-title>
+  
+    <ion-buttons end>
+        <button ion-button icon-only (click)="optionsPopover($event)">
+            <ion-icon name="ios-notifications-outline" ></ion-icon>
+        </button>
+    </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-card style="background-color:#1f3763" *ngIf="!auth.isAuthenticated()"> 
+        <ion-card-content text-center [navPush]='login'>
+            <p > Login to view account details </p> 
+        </ion-card-content>
+    </ion-card>
+    <ion-item *ngIf="!auth.isAuthenticated()" text-center>
+        OR
+    </ion-item>
+    <ion-card style="background-color:#1f3763" *ngIf="!auth.isAuthenticated()"> 
+        <ion-card-content text-center  (click)='openModal()'>
+            <p > Request New Account </p> 
+        </ion-card-content>
+    </ion-card>
+    <ion-card style="background-color: #424242;" *ngIf="details.data">
+        <ion-card-content text-center>
+          <strong style="color:white;font-size:90px;">{{details.data.remaining_hours}}</strong><br>
+          <strong style="color:white;font-size:30px;">HOURS BALANCE</strong>
+          <hr color="white">
+          <br/>
+          <div style="width: 100%; text-align:left;">
+            <p>ACCOUNT ID: &nbsp;&nbsp; {{details.data.client_id}}</p>
+            <P>PACKAGE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{details.data.total_package_hours}} HOURS</P>    
+            <P>USED HOURS: &nbsp;&nbsp; {{details.data.total_package_hours - details.data.remaining_hours}}</P>                 
+          </div>          
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card text-center style="background-color:  #9e9e9e;">
+        <ion-card-content>
+          Questions? Need to Touch Base with your Flight Valet?<br/> <a href="" [navPush]='enquiry' style="color:#2787e6">Click here</a>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

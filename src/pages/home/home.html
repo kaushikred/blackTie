@@ -1,14 +1,104 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle start>
+      <ion-icon name="ios-menu-outline"></ion-icon>
+  </button>
+
+
+  <ion-title text-center>
+      <img alt="logo" height="35"   src="assets/imgs/navbar.png" > 
+  </ion-title>
+
+  <ion-buttons end>
+      <button ion-button icon-only  (click)="optionsPopover($event)">
+          <ion-icon name="ios-notifications-outline"></ion-icon>
+      </button>
+  </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+<ion-content >
+  <ion-slides pager autoplay="2000" loop="true" speed="1000" effect='slide' class='slider' color="primary" *ngIf="banners.length > 0">
+        <ion-slide *ngFor="let item of banners" >
+          <img src="{{item.banner_image}}" style="width: 100vw !important; ">
+        </ion-slide>
+  </ion-slides>
+  
+  <ion-grid no-padding class="gridback">
+      <ion-row no-padding>
+        <ion-col col-6 no-padding no-padding [navPush]='myAccount'>
+          <ion-card class="options">
+            <ion-card-content text-center>
+              <h4>MY</h4>
+              <h4>ACCOUNT</h4>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6 no-padding>
+          <ion-card class="options" [navPush]='requestFlight'>
+            <ion-card-content text-center>
+              <h4>REQUEST</h4>
+              <h4>FLIGHT</h4>
+            </ion-card-content>
+        </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row no-padding>
+          <ion-col col-6 no-padding>
+            <ion-card class="options" [navPush]='airplaneMenu'>
+              <ion-card-content text-center>
+                <h4>AIRPLANE</h4>
+                <h4>MENU</h4>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col col-6 no-padding>
+            <ion-card class="options">
+              <ion-card-content text-center [navPush]='package'>
+                <h4>BUY A </h4>
+                <h4>PACKAGE</h4>
+              </ion-card-content>
+          </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row no-padding>
+            <ion-col col-6 no-padding>
+              <ion-card class="options">
+                <ion-card-content text-center [navPush]='enquiry'>
+                  <h4>CONTACT</h4>
+                  <h4>MY VALET</h4>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col col-6 no-padding>
+              <ion-card class="options">
+                <ion-card-content text-center [navPush]='bookingPage'>
+                  <h4>MY </h4>
+                  <h4>BOOKINGS</h4>
+                </ion-card-content>
+            </ion-card>
+            </ion-col>
+          </ion-row>
+          <ion-row no-padding>
+              <ion-col col-6 no-padding>
+                <ion-card class="options" [navPush]='howWorks'>
+                  <ion-card-content text-center>
+                    <h4>HOW IT</h4>
+                    <h4>WORKS</h4>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+              <ion-col col-6 no-padding>
+                <ion-card class="options" [navPush]='tips'>
+                  <ion-card-content text-center>
+                    <h4>FLYING</h4>
+                    <h4>TIPS</h4>
+                  </ion-card-content>
+              </ion-card>
+              </ion-col>
+            </ion-row>
+  </ion-grid>
+
 </ion-content>

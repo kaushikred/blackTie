@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>HOW IT WORKS</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="optionsPopover($event)">
+            <ion-icon name="ios-notifications-outline"></ion-icon>
+        </button>
+    </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <div *ngFor="let item of data; let p =index " >          
+          <ion-card  (click)="expandItem(item)">
+            <ion-card-header >
+                <p float-left>{{p+1}}. {{item.title}}</p>
+            </ion-card-header>
+            <accordion [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
+                <ion-item>
+                  <div text-wrap text-left>
+                      <p style="color: black !important">  {{item.description}}</p> 
+                  </div>
+                  <br/>
+                  <div text-wrap text-center *ngIf='item.subcontent'>
+                     <p style="color: black !important">  {{item.subcontent}} </p>
+                  </div>
+                    
+                </ion-item>
+                <div text-center *ngIf='item.getInTouch'>
+                  <button ion-button>GET IN TOUCH</button>                     
+                </div>
+            </accordion>
+          </ion-card>
+        </div>        
+    </ion-list>
+</ion-content>

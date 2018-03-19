@@ -14,3 +14,35 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.card h1,p {
+    color: white !important;
+    font-size: 1.9rem !important;
+} 
+.card h4 {
+    color: white !important;
+    font-size: 2.2rem !important;
+}
+
+hr {
+    background-color: white !important;
+}
+
+input{
+    color: black;
+}
+
+ion-textarea{
+    color: black;
+}
+.toast-ios .toast-wrapper.toast-bottom {
+    bottom: 40px;
+}
+
+.bar-button[icon-only] ion-icon {
+    font-size: 1.2em;
+}
+.toolbar-title {
+    
+    margin-top: 10px;
+    
+}

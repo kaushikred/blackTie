@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>FLYING TIPS</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="optionsPopover($event)">
+            <ion-icon name="ios-notifications-outline"></ion-icon>
+        </button>
+    </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-list>
+        <div *ngFor="let item of data; let p =index " >          
+          <ion-card  (click)="expandItem(item)">
+            <ion-card-header >
+                <p float-left>{{item.title}}</p>
+            </ion-card-header>
+            <accordion [expandHeight]="itemExpandHeight" [expanded]="item.expanded">
+                <ion-item>
+                  <div text-wrap text-left>
+                    <p>{{item.description}}</p>
+                  </div>                  
+                </ion-item>
+            </accordion>
+          </ion-card>
+        </div>        
+    </ion-list>
+
+</ion-content>

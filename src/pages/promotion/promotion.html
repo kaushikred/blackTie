@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle start (click)="optionsPopover($event)">
+        <ion-icon name="ios-menu-outline"></ion-icon>
+    </button>
+  
+  
+    <ion-title>
+         NEW OFFERS
+    </ion-title>
+  
+    <ion-buttons end>
+        <button ion-button icon-only  (click)="optionsPopover($event)">
+            <ion-icon name="ios-notifications-outline"></ion-icon>
+        </button>
+    </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content >
+    <div *ngIf="auth.isAuthenticated()">
+        <ion-card *ngFor="let promo of promos" >
+               
+                <ion-card-content style="font-size: 1.8rem;">
+                    {{promo.title}}
+                </ion-card-content>
+                <div text-left padding style="font-size: 1.4rem;">
+                    Validity :  {{promo.validity}}
+                </div>
+        </ion-card>
+    </div>
+    <ion-card style="background-color:#1f3763" *ngIf="!auth.isAuthenticated()"> 
+        <ion-card-content text-center [navPush]='login'>
+           <p > Login to view Promotions </p> 
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

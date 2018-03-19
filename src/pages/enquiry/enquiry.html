@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle start>
+      <ion-icon name="ios-menu-outline"></ion-icon>
+  </button>
+
+  <ion-title>CONTACT MY VALET</ion-title>
+
+  <ion-buttons end>
+      <button ion-button icon-only (click)="optionsPopover($event)">
+          <ion-icon name="ios-notifications-outline"></ion-icon>
+      </button>
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-list no-lines inset>
+      <div class='enquiry' text-center>
+        <h5 style="color: black;font-size: 25px;"> Send Inquiry </h5>
+      </div> 
+  
+    </ion-list>
+     
+    <form (ngSubmit)="sendEnquiry();enquiryForm.reset()" #enquiryForm="ngForm">
+
+        <ion-item>
+            <ion-label color="primary" floating><ion-icon name="person"></ion-icon> Name</ion-label>
+            <ion-input  name="name"  type="text" required [(ngModel)]="model.name" #name></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" floating><ion-icon name="md-mail"></ion-icon> Email</ion-label>
+            <ion-input  name="email"  type="email" required [(ngModel)]="model.email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" #email="ngModel"></ion-input>        
+        </ion-item>
+        <span *ngIf="!email.valid && email.touched"  style='color:red;padding-left: 16px;font-size: 1.4rem;
+        '>
+           Please enter a valid email
+        </span>
+
+        <ion-item>
+             <ion-label color="primary" floating > <ion-icon name="chatbubbles"></ion-icon> Message</ion-label>
+             <ion-textarea   type="text"  name="message" required clearInput rows='5'[(ngModel)]="model.txt"  #message></ion-textarea>
+        </ion-item>
+ 
+        <button ion-button class="submit-btn" full [disabled]="!enquiryForm.form.valid">SEND ENQUIRY</button>
+     </form>
+ </ion-content>

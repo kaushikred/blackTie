@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-navbar color="primary">
+      <ion-title>OUR PACKAGES</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="optionsPopover($event)">
+            <ion-icon name="ios-notifications-outline"></ion-icon>
+        </button>
+    </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content >
+    <ion-card *ngFor="let package of data">
+        <ion-card-content text-center>
+          <strong style="color:white;font-size:90px;">{{package.package_hour}}</strong>
+          <strong style="color:white;font-size:40px;">HOURS</strong>
+          <hr color="white" style="margin-top:-10px">
+          <ion-item no-padding>
+                
+          <span item-left>${{package.package_cost}} Per Month</span>
+          <span item-right style="font-size:0.8em;">Validity: {{package.package_duration}} Month</span>
+          </ion-item>
+          <div style="width: 100%; text-align:center;margin-top:10px;">
+            <button ion-button color="light" item-right *ngIf="auth.isAuthenticated()" (click)="bookPackage(package.id)">Book Package</button>    
+            <button ion-button color="light" item-right *ngIf="!auth.isAuthenticated()" [navPush]='login'>Login to Book</button>                      
+            
+          </div>          
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar color='primary'>
+    <button ion-button menuToggle start >
+      <ion-icon name="ios-menu-outline"></ion-icon>
+  </button>
+
+  <ion-title>NOTIFICATIONS</ion-title>
+
+  <ion-buttons end>
+      <button ion-button icon-only (click)="optionsPopover($event)">
+          <ion-icon name="ios-notifications-outline"></ion-icon>
+      </button>
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+        <div *ngIf="auth.isAuthenticated() && notifications.length > 0" >
+            <ion-card *ngFor="let notif of notifications"  >
+                    
+                    <ion-card-content>
+                        {{notif.txt}}
+                    </ion-card-content>
+            </ion-card>
+        </div>
+        
+
+        <ion-card style="background-color:#1f3763" *ngIf="!auth.isAuthenticated()"> 
+            <ion-card-content text-center [navPush]='login'>
+               <p > Login to view Notifications </p> 
+            </ion-card-content>
+        </ion-card>
+
+</ion-content>
