@@ -51,7 +51,6 @@ export class AirplaneMenuPage {
 
   expandItem(item){
     this.data.map((listItem) => {
-
         if(item == listItem){
             listItem.expanded = !listItem.expanded;
         } else {

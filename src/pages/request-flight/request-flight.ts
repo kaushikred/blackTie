@@ -96,7 +96,7 @@ export class RequestFlightPage {
     this.airplaneMenu.getAirplaneMenu()
     .subscribe(
       menuItems =>{
-
+       
         this.airplanedata = menuItems;        
       },
       error =>  {

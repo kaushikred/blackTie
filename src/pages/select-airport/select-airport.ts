@@ -37,7 +37,12 @@ export class SelectAirportPage {
     });
   }
   onSearchInput(){
-    this.searching = true;
+    if(this.searchTerm.length>=3){
+      this.searching = true;
+    }
+    else{
+      this.searching=false;
+    }
   }
 
   closeModal() {
@@ -49,10 +54,9 @@ export class SelectAirportPage {
   }
 
   filterItems(searchTerm){
-           return this.data.filter((item) => {
-               return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-           });    
-    
+      return this.data.filter((item) => {
+          return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+      });    
   }
 
   getAirports(){
@@ -73,7 +77,11 @@ export class SelectAirportPage {
   }
 
   setFilteredItems() {
-           this.items = this.filterItems(this.searchTerm);
-    
+    if(this.searchTerm.length>=3){
+      this.items = this.filterItems(this.searchTerm);
+    }
+    else{
+      this.items = this.filterItems("");
+    }
   }
 }

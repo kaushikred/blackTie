@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { IonicPage, LoadingController, PopoverController } from 'ionic-angular';
 import { TipsServiceProvider } from '../../providers/tips-service/tips-service';
 /**
  * Generated class for the TipsPage page.
