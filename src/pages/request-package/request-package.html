@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title text-center>Request Account</ion-title>
+    <ion-title text-center>Request Package</ion-title>
     <ion-buttons end>
         <button ion-button icon-only  (click)="closeModal()">
             <ion-icon name="md-close"></ion-icon>
@@ -23,14 +23,9 @@
       <form (ngSubmit)="sendEnquiry()" #enquiryForm="ngForm">
   
           <ion-item>
-              <ion-label color="primary" floating>First Name</ion-label>
-              <ion-input  name="first_name"  type="text" required [(ngModel)]="model.first_name"></ion-input>
+              <ion-label color="primary" floating> Name</ion-label>
+              <ion-input  name="name"  type="text" required [(ngModel)]="model.name"></ion-input>
           </ion-item>
-
-          <ion-item>
-            <ion-label color="primary" floating>Last Name</ion-label>
-            <ion-input  name="last_name"  type="text" required [(ngModel)]="model.last_name"></ion-input>
-        </ion-item>
   
           <ion-item>
               <ion-label color="primary" floating>Email</ion-label>
@@ -46,6 +41,6 @@
                <ion-input  type="text"  name="message" required [(ngModel)]="model.mobile"></ion-input>
           </ion-item>
    
-          <button ion-button class="submit-btn" full [disabled]="!enquiryForm.form.valid">SEND ENQUIRY</button>
+          <button ion-button  full class="submit-btn" [disabled]="!enquiryForm.form.valid">SEND ENQUIRY</button>
        </form>
    </ion-content>

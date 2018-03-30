@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, NavController, NavParams, PopoverController, ToastController } from 'ionic-angular';
+import { IonicPage, LoadingController,ModalController, NavController, NavParams, PopoverController, ToastController } from 'ionic-angular';
 import { PackagesProvider } from '../../providers/packages/packages';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
@@ -24,12 +24,20 @@ export class PackagePage {
   tokenoneSignal:string= 'MDdmN2U1NjQtY2MwZS00YWEyLWIxMmItNWNhMGE1MmM2NjRm';	
   
 
-  constructor(public http: HttpClient,private toastCtrl: ToastController , public packages: PackagesProvider,public loadingCtrl: LoadingController, public auth: AuthProvider, private popoverCtrl: PopoverController) {}
+  constructor(public modalCtrl: ModalController, public http: HttpClient,private toastCtrl: ToastController , public packages: PackagesProvider,public loadingCtrl: LoadingController, public auth: AuthProvider, private popoverCtrl: PopoverController) {}
 
   ionViewDidLoad() {
     this.getPackages();
     this.showLoader();
     
+  }
+
+  openModal(id) {
+    let modal = this.modalCtrl.create('RequestPackagePage', {package: id});
+    // Getting data from the modal:
+    modal.onDidDismiss(data => {
+    });
+    modal.present();
   }
 
   optionsPopover(event) {

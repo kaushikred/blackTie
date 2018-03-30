@@ -21,11 +21,21 @@
 
 
 <ion-content >
-    <ion-searchbar [(ngModel)]="searchTerm"  [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchTerm"  [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>    
     <div *ngIf="searching" class="spinner-container">
         <ion-spinner></ion-spinner>
     </div>
-    <br/>    
+    <br/>  
+    <ion-list>
+      <ion-item>
+        <ion-label>Search BY</ion-label>
+        <ion-select [(ngModel)]="searchby" (ionChange)="onSelectChange()">
+          <ion-option value="airport">Airport Name</ion-option>
+          <ion-option value="city">City Name</ion-option>
+          <ion-option value="state">State Name</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>  
     <!-- <ion-list>
         <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
           {{ item }}

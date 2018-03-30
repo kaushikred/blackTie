@@ -23,7 +23,7 @@
           </ion-item>
           <div style="width: 100%; text-align:center;margin-top:10px;">
             <button ion-button color="light" item-right *ngIf="auth.isAuthenticated()" (click)="bookPackage(package.id)">Book Package</button>    
-            <button ion-button color="light" item-right *ngIf="!auth.isAuthenticated()" [navPush]='login'>Login to Book</button>                      
+            <button ion-button color="light" item-right *ngIf="!auth.isAuthenticated()" (click)='openModal(package.package_id)'>Request Package</button>                      
             
           </div>          
         </ion-card-content>

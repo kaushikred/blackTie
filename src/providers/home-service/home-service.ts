@@ -86,6 +86,13 @@ export class HomeServiceProvider {
       );
     }
 
+    requestPackage(data): Observable<{}> {      
+      return this.http.post(SERVER_NAME+ 'new/package/request/',data).pipe(
+        map(this.extractData),
+     //   catchError(this.handleError)
+      );
+    }
+
     forgotPassword(data): Observable<{}> {      
       return this.http.post(SERVER_NAME+ 'forgot_password_mail/',data).pipe(
         map(this.extractData),
@@ -149,6 +156,14 @@ export class HomeServiceProvider {
 
       map(this.extractData),
     );
+  }
+
+  search(term:string,searchby:string): Observable<any> {
+    console.log(term)
+    let apiURL = `${SERVER_NAME}airport/?${searchby}=${term}`;
+    return this.http.get(apiURL).pipe(
+      map(this.extractData)
+    )
   }
   
   private extractData(res: any) {

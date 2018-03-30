@@ -3,6 +3,11 @@ import { Component } from '@angular/core';
 import { IonicPage, ViewController } from 'ionic-angular';
 import { HomeServiceProvider } from '../../providers/home-service/home-service';
 import 'rxjs/add/operator/debounceTime';
+import {Observable} from 'rxjs';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
+// import { AIRPORTS } from '../../providers/airportList';
 
 /**
  * Generated class for the SelectAirportPage page.
@@ -22,19 +27,53 @@ export class SelectAirportPage {
   items: any;
   searchControl:FormControl;
   searching: any = false;
+  searchby = 'airport';
 
   searchTerm: string = '';
 
+  private searchField: FormControl;
+  private results: Observable<any>;
+
   constructor(public viewCtrl: ViewController, public home: HomeServiceProvider ) {
     this.searchControl = new FormControl();
-    this.getAirports()
+   // this.getAirports()
+    // this.home.search('akhiok').subscribe(x=>{
+    //   console.log('return airports', x)
+    // })
+    this.searchField = new FormControl();
+  }
+
+  onSelectChange(){
+    this.items = [];
+    this.searchTerm = '';
+    
   }
 
   ionViewDidLoad() {
-    this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
+    this.searchControl.valueChanges
+    .debounceTime(1000)
+    .switchMap( term => {
+      if(term.length > 2){
+        console.log(term)
+        return this.home.search(term,this.searchby)
+      }else {
+        console.log(term)
+        return  Observable.of({data: {data: []}}) 
+      }
+      })
+    .subscribe(search => {
+      console.log(search)
       this.searching = false;
-            this.setFilteredItems();
+      console.log("jibrish result print",search)
+      this.items = search.data.data;
+      
+        //    this.setFilteredItems();
     });
+
+    
+
+  //  console.log(AIRPORTS.filter(x => x.id == 4)) 
+    
   }
   onSearchInput(){
     this.searching = true;
@@ -48,32 +87,7 @@ export class SelectAirportPage {
     this.viewCtrl.dismiss({data: item});
   }
 
-  filterItems(searchTerm){
-           return this.data.filter((item) => {
-               return item.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
-           });    
-    
-  }
+  
 
-  getAirports(){
-    this.searching = true;
-    
-    this.home.getAirports()
-    .subscribe(
-      airports => {
-        this.searching = false;
-        
-        this.data = airports;        
-        this.setFilteredItems();
-      },
-      error =>  {
-        this.searching = false;        
-        this.errorMessage = <any>error
-      });
-  }
-
-  setFilteredItems() {
-           this.items = this.filterItems(this.searchTerm);
-    
-  }
+  
 }

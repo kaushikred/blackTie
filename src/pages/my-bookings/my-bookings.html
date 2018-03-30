@@ -4,7 +4,7 @@
       <ion-icon name="ios-menu-outline"></ion-icon>
   </button>
 
-  <ion-title>MY BOOKINGS</ion-title>
+  <ion-title>MY FLIGHTS</ion-title>
 
   <ion-buttons end>
       <button ion-button icon-only (click)="optionsPopover($event)">
@@ -22,7 +22,7 @@
             REQUESTED
             </ion-segment-button>
             <ion-segment-button value="upcoming">
-            UPCOMING
+            CONFIRMED
             </ion-segment-button>
             <ion-segment-button value="completed">
             COMPLETED
@@ -48,10 +48,10 @@
                     <P>To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data.flight_to}} </P>  
                     <P>Type of plane: &nbsp;&nbsp; {{data.plane_type}}</P>
                     <P>Flight Type: &nbsp;&nbsp; {{data.return_date_time? 'Two Way':'One Way'}}</P>                                                          
-                    <P>Date: &nbsp;&nbsp; {{data.date_time | amDateFormat:'MM/DD/YYYY'}}</P> 
-                    <P>TIME: &nbsp;&nbsp; {{data.date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</P>   
+                    <P>Departure Date: &nbsp;&nbsp; {{data.date_time | amDateFormat:'MM/DD/YYYY'}}</P> 
+                    <P>Departure Time: &nbsp;&nbsp; {{data.date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</P>   
                     <p *ngIf='data.return_date_time'>Return Date: {{data.return_date_time | amDateFormat:'MM/DD/YYYY'}}</p>              
-                    <p  *ngIf='data.return_date_time'>TIME: &nbsp;&nbsp; {{data.return_date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</p>                       
+                    <p  *ngIf='data.return_date_time'>Return Time: &nbsp;&nbsp; {{data.return_date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</p>                       
                     <P>Number of passengers: &nbsp;&nbsp; {{data.number_of_passengers}}</P>                 
                     
                     </div>          
@@ -77,10 +77,10 @@
                         <P>To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data.flight_to}} </P>  
                         <P>Type of plane: &nbsp;&nbsp; {{data.plane_type}}</P>             
                         <P>Flight Type: &nbsp;&nbsp; {{data.return_date_time? 'Two Way':'One Way'}}</P>                                      
-                        <P>Date: &nbsp;&nbsp; {{data.date_time | amDateFormat:'MM/DD/YYYY'}}</P> 
-                        <P>TIME: &nbsp;&nbsp; {{data.date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</P> 
+                        <P>Departure Date: &nbsp;&nbsp; {{data.date_time | amDateFormat:'MM/DD/YYYY'}}</P> 
+                        <P>Departure Time: &nbsp;&nbsp; {{data.date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</P> 
                         <p *ngIf='data.return_date_time'>Return Date: {{data.return_date_time | amDateFormat:'MM/DD/YYYY'}}</p>              
-                        <p  *ngIf='data.return_date_time'>TIME: &nbsp;&nbsp; {{data.return_date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</p>                 
+                        <p  *ngIf='data.return_date_time'>Return Time: &nbsp;&nbsp; {{data.return_date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</p>                 
                         <P>Number of passengers: &nbsp;&nbsp; {{data.number_of_passengers}}</P>                 
                         
                         </div>          
@@ -104,10 +104,10 @@
                             <P>To: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{data.flight_to}} </P>  
                             <P>Type of plane: &nbsp;&nbsp; {{data.plane_type}}</P>    
                             <P>Flight Type: &nbsp;&nbsp; {{data.return_date_time? 'Two Way':'One Way'}}</P>                                                              
-                            <P>Date: &nbsp;&nbsp; {{data.date_time | amDateFormat:'MM/DD/YYYY'}}</P> 
-                            <P>TIME: &nbsp;&nbsp; {{data.date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</P> 
+                            <P>Departure Date: &nbsp;&nbsp; {{data.date_time | amDateFormat:'MM/DD/YYYY'}}</P> 
+                            <P>Departure Time: &nbsp;&nbsp; {{data.date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</P> 
                             <p *ngIf='data.return_date_time'>Return Date: {{data.return_date_time | amDateFormat:'MM/DD/YYYY'}}</p>              
-                            <p  *ngIf='data.return_date_time'>TIME: &nbsp;&nbsp; {{data.return_date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</p>                 
+                            <p  *ngIf='data.return_date_time'>Return Time: &nbsp;&nbsp; {{data.return_date_time |  amFromUtc | amDateFormat:'hh:mmA' }}</p>                 
                             <P>Number of passengers: &nbsp;&nbsp; {{data.number_of_passengers}}</P>                 
                             </div>          
                         </ion-card-content>

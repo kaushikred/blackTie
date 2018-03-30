@@ -27,14 +27,7 @@
   
   <ion-grid no-padding class="gridback">
       <ion-row no-padding>
-        <ion-col col-6 no-padding no-padding [navPush]='myAccount'>
-          <ion-card class="options">
-            <ion-card-content text-center>
-              <h4>MY</h4>
-              <h4>ACCOUNT</h4>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
+        
         <ion-col col-6 no-padding>
           <ion-card class="options" [navPush]='requestFlight'>
             <ion-card-content text-center>
@@ -43,6 +36,34 @@
             </ion-card-content>
         </ion-card>
         </ion-col>
+        <ion-col col-6 no-padding no-padding [navPush]='myAccount'>
+          <ion-card class="options">
+            <ion-card-content text-center>
+              <h4>MY</h4>
+              <h4>ACCOUNT</h4>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+
+      <ion-row no-padding>
+        <ion-col col-6 no-padding>
+            <ion-card class="options">
+              <ion-card-content text-center [navPush]='bookingPage'>
+                <h4>MY </h4>
+                <h4>BOOKINGS</h4>
+              </ion-card-content>
+            </ion-card>
+        </ion-col>
+        <ion-col col-6 no-padding>
+          <ion-card class="options">
+            <ion-card-content text-center [navPush]='enquiry'>
+              <h4>CONTACT</h4>
+              <h4>MY VALET</h4>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        
       </ion-row>
 
       <ion-row no-padding>
@@ -63,24 +84,7 @@
           </ion-card>
           </ion-col>
         </ion-row>
-        <ion-row no-padding>
-            <ion-col col-6 no-padding>
-              <ion-card class="options">
-                <ion-card-content text-center [navPush]='enquiry'>
-                  <h4>CONTACT</h4>
-                  <h4>MY VALET</h4>
-                </ion-card-content>
-              </ion-card>
-            </ion-col>
-            <ion-col col-6 no-padding>
-              <ion-card class="options">
-                <ion-card-content text-center [navPush]='bookingPage'>
-                  <h4>MY </h4>
-                  <h4>BOOKINGS</h4>
-                </ion-card-content>
-            </ion-card>
-            </ion-col>
-          </ion-row>
+        
           <ion-row no-padding>
               <ion-col col-6 no-padding>
                 <ion-card class="options" [navPush]='howWorks'>
