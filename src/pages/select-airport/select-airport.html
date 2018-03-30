@@ -22,9 +22,7 @@
 
 <ion-content >
     <ion-searchbar [(ngModel)]="searchTerm"  [formControl]="searchControl" (ionInput)="onSearchInput()"></ion-searchbar>    
-    <div *ngIf="searching" class="spinner-container">
-        <ion-spinner></ion-spinner>
-    </div>
+    
     <br/>  
     <ion-list>
       <ion-item>
@@ -36,6 +34,9 @@
         </ion-select>
       </ion-item>
     </ion-list>  
+    <div *ngIf="searching" class="spinner-container">
+      <ion-spinner></ion-spinner>
+    </div>
     <!-- <ion-list>
         <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
           {{ item }}
@@ -47,7 +48,13 @@
           <p style="color:#C97B7B !important">{{ item.name }}</p> 
           <p style="color:black !important">{{item.city}}, {{item.state}}</p>
         </button>  
-      </ion-list>
+    </ion-list>
+
+    <ion-card *ngIf='(searchTerm.length > 2 ) && (items.length === 0) && !searching'>
+      <ion-card-content>
+        No results found.
+      </ion-card-content>
+    </ion-card>
 
       
 

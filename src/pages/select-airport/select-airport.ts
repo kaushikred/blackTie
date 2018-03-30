@@ -24,7 +24,7 @@ import 'rxjs/add/operator/do';
 export class SelectAirportPage {
   data: any =[];
   errorMessage: string;
-  items: any;
+  items: any= [];
   searchControl:FormControl;
   searching: any = false;
   searchby = 'airport';
